@@ -1,0 +1,46 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Noto Color Emoji", sans-serif;
+    font-size: 12pt;
+    color: #ddd;
+}
+
+window#waybar {
+    background: rgba(0,0,0,0.85);
+    border-bottom: 1px solid #222;
+}
+
+#workspaces, #clock, #wireplumber, #battery, #network, #tray, #temperature {
+    background: transparent;
+}
+
+.modules-left > * , .modules-center > * , .modules-right > * {
+    padding: 0 6px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+}
+#battery {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#network {
+    font-family: "Font Awesome 6 Free", "JetBrainsMono Nerd Font", "Noto Color Emoji", sans-serif;
+    font-weight: 900;         
+    font-size: 11pt;         
+    padding: 0 8px;
+}
+.modules-right {
+    margin-right: 35px;
+}
+
+.modules-right > * {
+    margin-left: 25px; 
+}
+
+#wireplumber, #battery, #network, #temperature {
+    font-weight: 900;
+}
+
+#clock { font-weight: 600; }
