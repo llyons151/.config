@@ -15,6 +15,7 @@ DIR_CHOICES=(
   "$HOME/.config/hypr"
   "$HOME/.config/kitty"
   "$HOME/.config/waybar"
+  "$HOME/.config/tmux"
 
   "$HOME/Documents"
   "$HOME/Documents/ToDo"

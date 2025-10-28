@@ -16,3 +16,6 @@
 
 !waybar/
 !waybar/**
+
+!kitty/
+!kitty/**
