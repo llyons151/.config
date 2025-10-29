@@ -4,6 +4,10 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 PS1='[\u@\h \W]\$ '
 
 bind -x '"\C-n":fastfetch'
