@@ -8,6 +8,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+
 PS1='[\u@\h \W]\$ '
 
 bind -x '"\C-n":fastfetch'
@@ -20,6 +21,8 @@ DIR_CHOICES=(
   "$HOME/.config/kitty"
   "$HOME/.config/waybar"
   "$HOME/.config/tmux"
+
+  "$HOME/Downloads"
 
   "$HOME/Documents"
   "$HOME/Documents/ToDo"
@@ -40,15 +43,16 @@ DIR_CHOICES=(
 
   # ---- School ----
   "$HOME/Documents/School"
+  "$HOME/Documents/School/Exe"
   "$HOME/Documents/School/History"
   "$HOME/Documents/School/English"
   "$HOME/Documents/School/CS2"
 )
 
 tmux_windowizer() {
-    local session="SuperProductiveAndOptimalThingsYouWouldn'tUnderstand"
+    local session="saps"
     local picks d name i wid last_wid=""
-    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Grass only grows in one direction... choose your roots wisely -> ' --height=100% --multi)" || return
+    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Grass does not grow down... choose your roots wisely -> ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
     if ! tmux has-session -t "$session" 2>/dev/null; then
         read -r d <<<"$picks"
@@ -97,4 +101,4 @@ bind '"\C-f":"\C-ucd_windowizer\C-m"'
 bind -r '\C-t'
 bind -x '"\C-tk":tmux_kill_all'
 
-cd() { builtin cd "$@" && ls -gA; }
+cld() { builtin cd "$@" && ls -gA; }
