@@ -25,8 +25,10 @@ DIR_CHOICES=(
   "$HOME/Downloads"
 
   "$HOME/Documents"
+  "$HOME/Documents/VimThings"
   "$HOME/Documents/ToDo"
   "$HOME/Documents/Jobs"
+  "$HOME/Documents/TheClutterDir"
 
   # ---- Projects ----
   "$HOME/Documents/Projects"
