@@ -42,6 +42,7 @@ DIR_CHOICES=(
   "$HOME/Documents/Projects/PotionInventorySystem"
   "$HOME/Documents/Projects/QuizGarden"
   "$HOME/Documents/Projects/RailwayStationSystem"
+  "$HOME/Documents/Projects/FetchMe"
 
   # ---- School ----
   "$HOME/Documents/School"
@@ -103,4 +104,7 @@ bind '"\C-f":"\C-ucd_windowizer\C-m"'
 bind -r '\C-t'
 bind -x '"\C-tk":tmux_kill_all'
 
-cld() { builtin cd "$@" && ls -gA; }
+update() {
+    sudo pacman -Syu --noconfirm
+    yay -Syu --noconfirm
+}
