@@ -29,6 +29,7 @@ DIR_CHOICES=(
   "$HOME/Documents/ToDo"
   "$HOME/Documents/Jobs"
   "$HOME/Documents/TheClutterDir"
+  "$HOME/Documents/Music"
 
   # ---- Projects ----
   "$HOME/Documents/Projects"
@@ -46,6 +47,7 @@ DIR_CHOICES=(
 
   # ---- School ----
   "$HOME/Documents/School"
+  "$HOME/Documents/School/PreCal"
   "$HOME/Documents/School/Exe"
   "$HOME/Documents/School/History"
   "$HOME/Documents/School/English"
