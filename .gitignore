@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+!.gitignore
+!README.md
+!.bashrc
+
+!nvim/
+!nvim/**
+
+!hypr/
+!hypr/**
+
+!tmux/
+!tmux/**
+
+!waybar/
+!waybar/**
+
+!kitty/
+!kitty/**
