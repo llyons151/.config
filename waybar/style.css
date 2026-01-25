@@ -1,46 +1,125 @@
+/* WAYBAR - Match WOFI Stable Dark (Hypr INACTIVE border rgba(78c8ff55), 1px) */
+
 * {
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Noto Color Emoji", sans-serif;
-    font-size: 12pt;
-    color: #ddd;
+  min-height: 0;
+  min-width: 0;
+  font-family: "JetBrainsMono NFP", "JetBrainsMono Nerd Font", monospace, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
 }
+
+/* Hypr inactive border */
+@define-color border rgba(120, 200, 255, 0.33); /* = 0x55 alpha */
+
+/* Optional: active border if you ever want it */
+@define-color border_active rgba(120, 200, 255, 0.67); /* = 0xAA alpha */
 
 window#waybar {
-    background: rgba(0,0,0,0.85);
-    border-bottom: 1px solid #222;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+
+  background-color: rgba(17, 17, 27, 0.85);
+  border: 1px solid @border;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-#workspaces, #clock, #wireplumber, #battery, #network, #tray, #temperature {
-    background: transparent;
-}
-
-.modules-left > * , .modules-center > * , .modules-right > * {
-    padding: 0 6px;
-}
-
+/* Workspaces */
 #workspaces button {
-    padding: 0 6px;
-}
-#battery {
-    margin-left: 20px;
-    margin-right: 10px;
+  padding: 0.22rem 0.55rem;
+  margin: 0.30rem 0.18rem;
+  border-radius: 10px;
+
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  border: 1px solid @border;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
 }
 
-#network {
-    font-family: "Font Awesome 6 Free", "JetBrainsMono Nerd Font", "Noto Color Emoji", sans-serif;
-    font-weight: 900;         
-    font-size: 11pt;         
-    padding: 0 8px;
-}
-.modules-right {
-    margin-right: 35px;
+#workspaces button:hover {
+  background-color: #2b3a55;
+  color: #ffffff;
+  border: 1px solid @border_active; /* hover can pop a tiny bit */
 }
 
-.modules-right > * {
-    margin-left: 25px; 
+#workspaces button.active {
+  background-color: #2b3a55;
+  color: #cdd6f4;
+  border: 1px solid @border_active; /* active workspace matches active vibe */
+  box-shadow: 0 0 16px rgba(120, 200, 255, 0.12);
 }
 
-#wireplumber, #battery, #network, #temperature {
-    font-weight: 900;
+#workspaces button.urgent {
+  background-color: #2b3a55;
+  color: #f38ba8;
+  border: 1px solid #f38ba8;
 }
 
-#clock { font-weight: 600; }
+/* Modules */
+#clock,
+#pulseaudio,
+#custom-logo,
+#custom-power,
+#custom-spotify,
+#custom-notification,
+#cpu,
+#tray,
+#memory,
+#window,
+#mpris,
+#battery,
+#network,
+#bluetooth,
+#backlight,
+#idle_inhibitor {
+  padding: 0.22rem 0.60rem;
+  margin: 0.30rem 0.18rem;
+  border-radius: 10px;
+
+  background-color: #181825;
+  border: 1px solid @border;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+  color: #cdd6f4;
+}
+
+/* Optional: keep separators subtle */
+#custom-sep {
+  padding: 0px;
+  color: rgba(205, 214, 244, 0.25);
+}
+
+/* If window module is empty, don't draw a pill */
+window#waybar.empty #window {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Accent-y per-module colors */
+#cpu { color: #89dceb; }
+#memory { color: #cba6f7; }
+#clock { color: #74c7ec; }
+#pulseaudio { color: #b4befe; }
+#battery { color: #89b4fa; }
+#network { color: #94e2d5; }
+#bluetooth { color: #b4befe; }
+#backlight { color: #a6adc8; }
+#idle_inhibitor { color: #a6e3a1; }
+#custom-logo { color: rgba(120, 200, 255, 0.80); } /* close to your blue */
+#custom-power { color: #f38ba8; }
+
+/* MPRIS states */
+#mpris.playing { color: #a6e3a1; }
+#mpris.paused  { color: #a6adc8; }
+
+/* Tooltip matches theme */
+tooltip {
+  background-color: #11111b;
+  border: 1px solid @border;
+  color: #cdd6f4;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.40);
+}

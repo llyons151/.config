@@ -2,12 +2,8 @@
 
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+alias ls='ls -g --color=auto'
 alias grep='grep --color=auto'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
 
 PS1='[\u@\h \W]\$ '
 
@@ -20,6 +16,7 @@ DIR_CHOICES=(
   "$HOME/.config/hypr"
   "$HOME/.config/kitty"
   "$HOME/.config/waybar"
+  "$HOME/.config/wofi"
   "$HOME/.config/tmux"
 
   "$HOME/Downloads"
