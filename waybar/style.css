@@ -15,16 +15,16 @@
 @define-color border_active rgba(120, 200, 255, 0.67); /* = 0xAA alpha */
 
 window#waybar {
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  transition: background-color 0.5s ease;
 
-  background-color: rgba(17, 17, 27, 0.85);
-  border: 1px solid @border;
-  border-radius: 12px;
+  background-color: rgba(17, 17, 27, 0.75); /* glass tint */
 
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  /* Hyprland-style inactive border */
+  border: 1px solid rgba(120, 200, 255, 0.33);
+
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
-
 /* Workspaces */
 #workspaces button {
   padding: 0.22rem 0.55rem;
