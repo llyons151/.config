@@ -17,10 +17,10 @@
 window#waybar {
   transition: background-color 0.5s ease;
 
-  background-color: rgba(17, 17, 27, 0.75); /* glass tint */
+  background-color: rgba(17, 17, 27, 0); /* glass tint */
 
   /* Hyprland-style inactive border */
-  border: 1px solid rgba(120, 200, 255, 0.33);
+  border: 0px solid rgba(120, 200, 255, 0.33);
 
   border-radius: 16px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
