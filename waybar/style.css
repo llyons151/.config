@@ -40,14 +40,14 @@ window#waybar {
 
 #workspaces button:hover {
   background-color: #2b3a55;
-  color: #ffffff;
-  border: 1px solid @border_active; /* hover can pop a tiny bit */
+  color: #cdd6f4;
+  border: 1px solid @border_active; 
 }
 
 #workspaces button.active {
-  background-color: #2b3a55;
+  background-color: #1e1e2e;
   color: #cdd6f4;
-  border: 1px solid @border_active; /* active workspace matches active vibe */
+  border: 1px solid @border_active; 
   box-shadow: 0 0 16px rgba(120, 200, 255, 0.12);
 }
 
