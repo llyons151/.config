@@ -54,3 +54,23 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set('n', 'dl', '^D')
 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+
+-- ===== LSP =====
+local map = vim.keymap.set
+
+-- Go to definition / declaration
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+
+-- References
+map("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
+
+-- Hover docs
+map("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
+
+-- Rename variable/function
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
+
+-- Code actions (fix errors, refactor, etc.)
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+

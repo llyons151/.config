@@ -1,14 +1,29 @@
--- Mason core
+--------------------------------------------------
+-- Mason
+--------------------------------------------------
 require("mason").setup()
 
--- mason-lspconfig: ONLY servers Mason can install
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "ts_ls" },  -- removed "ccls"
+  ensure_installed = {
+    "lua_ls",
+    "pyright",
+    "ts_ls",
+    "clangd",
+    "tinymist",
+  },
   automatic_installation = true,
 })
 
+--------------------------------------------------
+-- Capabilities (for nvim-cmp)
+--------------------------------------------------
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+--------------------------------------------------
 -- Lua
+--------------------------------------------------
 vim.lsp.config["lua_ls"] = {
+  capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = { globals = { "vim" } },
@@ -17,21 +32,52 @@ vim.lsp.config["lua_ls"] = {
   },
 }
 
--- C/C++ via ccls (installed with pacman)
-vim.lsp.config["ccls"] = {
-  init_options = {
-    compilationDatabaseDirectory = "build",
-    index = { threads = 0 },
-    clang = { excludeArgs = { "-frounding-math" } },
-  },
+--------------------------------------------------
+-- Python
+--------------------------------------------------
+vim.lsp.config["pyright"] = {
+  capabilities = capabilities,
 }
 
--- Python
-vim.lsp.config["pyright"] = {}
+--------------------------------------------------
+-- TypeScript
+--------------------------------------------------
+vim.lsp.config["ts_ls"] = {
+  capabilities = capabilities,
+}
 
--- JavaScript / TypeScript (Neovim 0.11 name)
-vim.lsp.config["ts_ls"] = {}
+--------------------------------------------------
+-- C / C++ (clangd)
+--------------------------------------------------
+vim.lsp.config["clangd"] = {
+  capabilities = capabilities,
+  cmd = { "clangd", "--background-index" },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  root_markers = { "compile_commands.json", ".git" },
+}
 
--- Enable them (start on new buffers)
-vim.lsp.enable({ "lua_ls", "ccls", "pyright", "ts_ls" })
+--------------------------------------------------
+-- Typst
+--------------------------------------------------
+vim.lsp.config["tinymist"] = {
+  capabilities = capabilities,
+  filetypes = { "typst" },
+}
 
+--------------------------------------------------
+-- Enable servers
+--------------------------------------------------
+vim.lsp.enable({
+  "lua_ls",
+  "pyright",
+  "ts_ls",
+  "clangd",
+  "tinymist",
+})
+
+--------------------------------------------------
+-- Typst filetype
+--------------------------------------------------
+vim.filetype.add({
+  extension = { typ = "typst" },
+})

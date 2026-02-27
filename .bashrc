@@ -96,4 +96,16 @@ update() {
     sudo pacman -Syu --noconfirm
     yay -Syu --noconfirm
 }
+kitty_black() {
+    kitty @ set-background-opacity 1.0
+}
+kitty_toggle_opacity() {
+    if [[ "$KITTY_OPACITY" == "opaque" ]]; then
+        kitty @ set-background-opacity 0.7
+        export KITTY_OPACITY=transparent
+    else
+        kitty @ set-background-opacity 1.0
+        export KITTY_OPACITY=opaque
+    fi
+}
 export LANG=en_US.UTF-8
