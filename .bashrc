@@ -43,7 +43,7 @@ DIR_CHOICES=(
 tmux_windowizer() {
     local session="saps"
     local picks d name i wid last_wid=""
-    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Grass does not grow down... choose your roots wisely -> ' --height=100% --multi)" || return
+    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Clocks only tick in one direction: ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
     if ! tmux has-session -t "$session" 2>/dev/null; then
         read -r d <<<"$picks"
@@ -75,7 +75,7 @@ tmux_kill_all() {
 
 cd_windowizer() {
     local picks dir last_dir
-    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Grass only grows in one direction... choose your roots wisely -> ' --height=100% --multi)" || return
+    picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Clocks only tick in one direction: ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
     while IFS= read -r dir; do
         [[ -d "$dir" ]] || continue
