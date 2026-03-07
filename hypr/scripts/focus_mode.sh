@@ -2,9 +2,9 @@
 
 STATE_FILE="/tmp/hypr_focus_mode"
 
-GAPS_IN=5
-GAPS_OUT=10
-BORDER=2
+GAPS_IN=2
+GAPS_OUT=2
+BORDER=1
 
 if [ -f "$STATE_FILE" ]; then
     # Restore normal layout
