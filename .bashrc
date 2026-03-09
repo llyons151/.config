@@ -31,6 +31,7 @@ DIR_CHOICES=(
 
   # ---- Projects ----
   "$HOME/Documents/Projects"
+  "$HOME/Documents/Projects/GravitySim"
 
   # ---- School ----
   "$HOME/Documents/School"

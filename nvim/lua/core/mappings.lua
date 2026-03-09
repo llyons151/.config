@@ -29,8 +29,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-vim.opt.backupcopy = "yes"   
-vim.opt.writebackup = false 
+vim.opt.backupcopy = "yes"
+vim.opt.writebackup = false
 
 vim.opt.wrap = false
 
