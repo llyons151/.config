@@ -1,14 +1,7 @@
---------------------------------------------------
--- nvim-cmp pretty setup
---------------------------------------------------
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-
 require("luasnip.loaders.from_vscode").lazy_load()
 
---------------------------------------------------
--- Icons
---------------------------------------------------
 local kind_icons = {
   Text = "󰉿",
   Method = "󰆧",
@@ -37,9 +30,6 @@ local kind_icons = {
   TypeParameter = "󰊄",
 }
 
---------------------------------------------------
--- Helper
---------------------------------------------------
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   if col == 0 then return false end
@@ -47,9 +37,6 @@ local has_words_before = function()
   return text:sub(col, col):match("%s") == nil
 end
 
---------------------------------------------------
--- Setup
---------------------------------------------------
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   completion = { autocomplete = false },
@@ -60,9 +47,6 @@ cmp.setup({
     end,
   },
 
-  --------------------------------------------------
-  -- Pretty windows
-  --------------------------------------------------
   window = {
     completion = cmp.config.window.bordered({
       border = "rounded",
@@ -73,9 +57,6 @@ cmp.setup({
     }),
   },
 
-  --------------------------------------------------
-  -- Nice formatting
-  --------------------------------------------------
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, item)
@@ -90,9 +71,6 @@ cmp.setup({
     end,
   },
 
-  --------------------------------------------------
-  -- Mappings
-  --------------------------------------------------
   mapping = cmp.mapping.preset.insert({
 
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -114,9 +92,6 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
   }),
 
-  --------------------------------------------------
-  -- Sources
-  --------------------------------------------------
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },

@@ -20,24 +20,22 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = kill_line_nr_bg,
 })
 
--- enable true color
 vim.o.termguicolors = true
-
--- make main backgrounds transparent
 vim.api.nvim_set_hl(0, "Normal",     { bg = "NONE" })
 vim.api.nvim_set_hl(0, "NormalFloat",{ bg = "NONE" })
 
--- keep transparency after changing colorschemes
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.api.nvim_set_hl(0, "Normal",      { bg = "NONE" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
   end,
 })
+
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "#000000", fg = "#d4d4d4" })
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#1f1f1f", fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#5e81ac", bg = "#000000" })
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.api.nvim_set_hl(0, "Pmenu", { bg = "#000000", fg = "#d4d4d4" })

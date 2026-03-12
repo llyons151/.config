@@ -1,4 +1,3 @@
--- after/plugin/telescope.lua
 local ok, telescope = pcall(require, "telescope")
 if not ok then return end
 
@@ -38,8 +37,8 @@ telescope.setup({
         height          = 0.90,
         preview_cutoff  = 40,
       },
-      bottom_pane = {         -- “ivy-like” without using the ivy theme
-        height          = 25, -- rows
+      bottom_pane = {
+        height          = 25,
         prompt_position = "bottom",
         preview_cutoff  = 120,
       },
@@ -72,12 +71,12 @@ telescope.setup({
       follow     = true,
       no_ignore  = false,
       previewer  = false,
-      theme      = "dropdown",  
+      theme      = "dropdown",
     },
     buffers = {
       sort_mru = true,
       ignore_current_buffer = true,
-      theme = "ivy",           
+      theme = "ivy",
       mappings = {
         i = { ["<C-d>"] = actions.delete_buffer },
         n = { ["d"]     = actions.delete_buffer },

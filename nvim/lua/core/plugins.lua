@@ -16,15 +16,6 @@ return require("packer").startup(function(use)
   use { "williamboman/mason.nvim", run = ":MasonUpdate" }
   use "williamboman/mason-lspconfig.nvim"
 
-  -- Typst
-  use {
-    'chomosuke/typst-preview.nvim',
-    tag = 'v1.*',
-    config = function()
-      require("typst-preview").setup({})
-    end,
-  }
-
   -- Colors
   use {
     "cocopon/iceberg.vim",

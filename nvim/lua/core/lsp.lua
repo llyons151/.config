@@ -1,6 +1,3 @@
---------------------------------------------------
--- Mason
---------------------------------------------------
 require("mason").setup()
 
 require("mason-lspconfig").setup({
@@ -14,14 +11,8 @@ require("mason-lspconfig").setup({
   automatic_installation = true,
 })
 
---------------------------------------------------
--- Capabilities (for nvim-cmp)
---------------------------------------------------
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
---------------------------------------------------
--- Lua
---------------------------------------------------
 vim.lsp.config["lua_ls"] = {
   capabilities = capabilities,
   settings = {
@@ -32,23 +23,14 @@ vim.lsp.config["lua_ls"] = {
   },
 }
 
---------------------------------------------------
--- Python
---------------------------------------------------
 vim.lsp.config["pyright"] = {
   capabilities = capabilities,
 }
 
---------------------------------------------------
--- TypeScript
---------------------------------------------------
 vim.lsp.config["ts_ls"] = {
   capabilities = capabilities,
 }
 
---------------------------------------------------
--- C / C++ (clangd)
---------------------------------------------------
 vim.lsp.config["clangd"] = {
   capabilities = capabilities,
   cmd = { "clangd", "--background-index" },
@@ -56,28 +38,10 @@ vim.lsp.config["clangd"] = {
   root_markers = { "compile_commands.json", ".git" },
 }
 
---------------------------------------------------
--- Typst
---------------------------------------------------
-vim.lsp.config["tinymist"] = {
-  capabilities = capabilities,
-  filetypes = { "typst" },
-}
-
---------------------------------------------------
--- Enable servers
---------------------------------------------------
 vim.lsp.enable({
   "lua_ls",
   "pyright",
   "ts_ls",
   "clangd",
   "tinymist",
-})
-
---------------------------------------------------
--- Typst filetype
---------------------------------------------------
-vim.filetype.add({
-  extension = { typ = "typst" },
 })
