@@ -22,23 +22,36 @@ DIR_CHOICES=(
   "$HOME/Downloads"
 
   "$HOME/Pictures"
-  "$HOME/Pictures/Wallpapers"
+  "$HOME/Pictures/wallpapers"
 
   "$HOME/Documents"
-  "$HOME/Documents/ToDo"
+  "$HOME/Documents/Obsidian"
+  "$HOME/Documents/Todo"
+  "$HOME/Documents/Notes"
   "$HOME/Documents/Jobs"
-  "$HOME/Documents/TheClutterDir"
+  "$HOME/Documents/Theclutterdir"
 
   # ---- Projects ----
   "$HOME/Documents/Projects"
+  "$HOME/Documents/Projects/RoadFlow"
+  "$HOME/Documents/Projects/Research"
+  "$HOME/Documents/Projects/marketing"
+  "$HOME/Documents/Projects/AntiWebsiteScraper"
   "$HOME/Documents/Projects/GravitySim"
+  "$HOME/Documents/Projects/VimCube"
+  "$HOME/Documents/Projects/omegames"
 
   # ---- School ----
   "$HOME/Documents/School"
-  "$HOME/Documents/School/History"
-  "$HOME/Documents/School/Calc"
   "$HOME/Documents/School/Bio"
-  "$HOME/Documents/School/Discrete"
+  "$HOME/Documents/School/History"
+  "$HOME/Documents/School/Government"
+  "$HOME/Documents/School/CalcI"
+  "$HOME/Documents/School/CalcII"
+  "$HOME/Documents/School/DiscreteII"
+  "$HOME/Documents/School/Assembly"
+  "$HOME/Documents/School/ComputerEthics"
+  "$HOME/Documents/School/DSA"
 )
 
 tmux_windowizer() {
@@ -109,4 +122,7 @@ kitty_toggle_opacity() {
         export KITTY_OPACITY=opaque
     fi
 }
+
 export LANG=en_US.UTF-8
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
