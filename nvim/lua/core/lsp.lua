@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({
     "ts_ls",
     "clangd",
     "tinymist",
+    "rust_analyzer",
   },
   automatic_installation = true,
 })
@@ -38,10 +39,24 @@ vim.lsp.config["clangd"] = {
   root_markers = { "compile_commands.json", ".git" },
 }
 
+vim.lsp.config["rust_analyzer"] = {
+  capabilities = capabilities,
+  filetypes = { "rust" },
+  root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = { allFeatures = true },
+      checkOnSave = { command = "clippy" },
+      procMacro = { enable = true },
+    },
+  },
+}
+
 vim.lsp.enable({
   "lua_ls",
   "pyright",
   "ts_ls",
   "clangd",
   "tinymist",
+  "rust_analyzer",
 })

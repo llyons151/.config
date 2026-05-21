@@ -11,6 +11,8 @@ require'nvim-treesitter.configs'.setup {
         "markdown_inline",
         "javascript",
         "typescript",
+        "rust",
+        "toml",
     },
 
     sync_install = false,

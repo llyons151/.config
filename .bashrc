@@ -9,7 +9,8 @@ PS1='[\u@\h \W]\$ '
 
 bind -x '"\C-n":fastfetch'
 
-DIR_CHOICES=(
+# Specific dirs listed individually
+EXTRA_DIRS=(
   "$HOME"
   "$HOME/.config"
   "$HOME/.config/nvim"
@@ -25,38 +26,33 @@ DIR_CHOICES=(
   "$HOME/Pictures/wallpapers"
 
   "$HOME/Documents"
-  "$HOME/Documents/Obsidian"
-  "$HOME/Documents/Todo"
-  "$HOME/Documents/Notes"
-  "$HOME/Documents/Jobs"
-  "$HOME/Documents/Theclutterdir"
-
-  # ---- Projects ----
-  "$HOME/Documents/Projects"
-  "$HOME/Documents/Projects/RoadFlow"
-  "$HOME/Documents/Projects/Research"
-  "$HOME/Documents/Projects/marketing"
-  "$HOME/Documents/Projects/AntiWebsiteScraper"
-  "$HOME/Documents/Projects/GravitySim"
-  "$HOME/Documents/Projects/VimCube"
-  "$HOME/Documents/Projects/omegames"
-
-  # ---- School ----
-  "$HOME/Documents/School"
-  "$HOME/Documents/School/Bio"
-  "$HOME/Documents/School/History"
-  "$HOME/Documents/School/Government"
-  "$HOME/Documents/School/CalcI"
-  "$HOME/Documents/School/CalcII"
-  "$HOME/Documents/School/DiscreteII"
-  "$HOME/Documents/School/Assembly"
-  "$HOME/Documents/School/ComputerEthics"
-  "$HOME/Documents/School/DSA"
 )
+
+# Parent dirs — their immediate (non-hidden) children are auto-included
+PARENT_DIRS=(
+  "$HOME/Documents"
+  "$HOME/Documents/SelfStudy"
+  "$HOME/Documents/Projects"
+  "$HOME/Documents/School"
+)
+
+_build_dir_choices() {
+  DIR_CHOICES=("${EXTRA_DIRS[@]}")
+  local parent child
+  for parent in "${PARENT_DIRS[@]}"; do
+    [[ -d "$parent" ]] || continue
+    DIR_CHOICES+=("$parent")
+    for child in "$parent"/*/; do
+      [[ -d "$child" ]] || continue
+      DIR_CHOICES+=("${child%/}")
+    done
+  done
+}
 
 tmux_windowizer() {
     local session="saps"
     local picks d name i wid last_wid=""
+    _build_dir_choices
     picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Clocks only tick in one direction: ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
     if ! tmux has-session -t "$session" 2>/dev/null; then
@@ -89,6 +85,7 @@ tmux_kill_all() {
 
 cd_windowizer() {
     local picks dir last_dir
+    _build_dir_choices
     picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Clocks only tick in one direction: ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
     while IFS= read -r dir; do
