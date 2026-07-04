@@ -1,44 +1,27 @@
 vim.opt.termguicolors = true
 
-local ok, rose_pine = pcall(require, "rose-pine")
+-- poimandres.nvim: Poimandres colorscheme for Neovim
+-- https://github.com/olivercederborg/poimandres.nvim
+local ok, poimandres = pcall(require, "poimandres")
 if not ok then return end
 
-rose_pine.setup({
-    variant = "main",
-    dark_variant = "main",
-    disable_background = false,
-    disable_float_background = false,
-    disable_italics = false,
+poimandres.setup({
+  bold_vert_split = false,
+  dark_variant = "main",
+  disable_background = true,
+  disable_float_background = true,
+  disable_italics = false,
 
-    highlight_groups = {
-        ["@keyword"]            = { fg = "#FFFFFF",  italic = true },
-        ["@keyword.function"]   = { fg = "iris",  italic = true },
-        ["@conditional"]        = { fg = "iris",  italic = true },
-        ["@repeat"]             = { fg = "iris",  italic = true },
-        ["@function"]           = { fg = "pine",  bold = true },
-        ["@function.builtin"]   = { fg = "pine",  bold = true },
-        ["@variable"]           = { fg = "foam" },
-        ["@variable.builtin"]   = { fg = "foam" },
-
-        Keyword  = { fg = "iris",  italic = true },
-        Function = { fg = "pine",  bold = true },
-        Variable = { fg = "foam"  },
-        Comment  = { italic = true },
-    },
+  -- Brighten the dimmest groups so they stay readable over a
+  -- transparent background (the dark blue-grays wash out otherwise).
+  highlight_groups = {
+    Comment    = { fg = "#8C93B8" }, -- nudged up for contrast
+    LineNr     = { fg = "#6E7E97" }, -- was blueGray3 #506477 (too dark)
+    Special    = { fg = "#9197B8" }, -- was blueGray2 #767C9D
+    NonText    = { fg = "#8090AA" }, -- was blue4 #7390AA
+    FoldColumn = { fg = "#9197B8" }, -- was blueGray2
+    Whitespace = { fg = "#5A6B80" }, -- was blueGray3
+  },
 })
 
-vim.cmd("colorscheme rose-pine")
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-        vim.api.nvim_set_hl(0, "@keyword.lua",      { fg = "#C4A7E7", italic = true })
-        vim.api.nvim_set_hl(0, "@conditional.lua",  { fg = "#C4A7E7", italic = true })
-        vim.api.nvim_set_hl(0, "@repeat.lua",       { fg = "#C4A7E7", italic = true })
-        vim.api.nvim_set_hl(0, "Statement",         { fg = "#C4A7E7", italic = true })
-        vim.api.nvim_set_hl(0, "@function.call", { fg = "#89dceb" })
-        vim.api.nvim_set_hl(0, "@lsp.type.function.typescriptreact", { fg = "#89dceb" })
-        vim.api.nvim_set_hl(0, "@lsp.type.function", { fg = "#89dceb" })
-    end,
-})
-
+vim.cmd("colorscheme poimandres")

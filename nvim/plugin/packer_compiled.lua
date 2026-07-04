@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/mokey/.cache/nvim/packer_hererocks/2.1.1767980792/share/lua/5.1/?.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1767980792/share/lua/5.1/?/init.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1767980792/lib/luarocks/rocks-5.1/?.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1767980792/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/mokey/.cache/nvim/packer_hererocks/2.1.1767980792/lib/lua/5.1/?.so"
+local package_path_str = "/home/mokey/.cache/nvim/packer_hererocks/2.1.1774896198/share/lua/5.1/?.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1774896198/share/lua/5.1/?/init.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1774896198/lib/luarocks/rocks-5.1/?.lua;/home/mokey/.cache/nvim/packer_hererocks/2.1.1774896198/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/mokey/.cache/nvim/packer_hererocks/2.1.1774896198/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -99,12 +99,6 @@ _G.packer_plugins = {
     path = "/home/mokey/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["iceberg.vim"] = {
-    config = { "\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme iceberg\bcmd\bvim\0" },
-    loaded = true,
-    path = "/home/mokey/.local/share/nvim/site/pack/packer/start/iceberg.vim",
-    url = "https://github.com/cocopon/iceberg.vim"
-  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/mokey/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -140,28 +134,19 @@ _G.packer_plugins = {
     path = "/home/mokey/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["poimandres.nvim"] = {
+    loaded = true,
+    path = "/home/mokey/.local/share/nvim/site/pack/packer/start/poimandres.nvim",
+    url = "https://github.com/olivercederborg/poimandres.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/mokey/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["typst-preview.nvim"] = {
-    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18typst-preview\frequire\0" },
-    loaded = true,
-    path = "/home/mokey/.local/share/nvim/site/pack/packer/start/typst-preview.nvim",
-    url = "https://github.com/chomosuke/typst-preview.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: typst-preview.nvim
-time([[Config for typst-preview.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18typst-preview\frequire\0", "config", "typst-preview.nvim")
-time([[Config for typst-preview.nvim]], false)
--- Config for: iceberg.vim
-time([[Config for iceberg.vim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme iceberg\bcmd\bvim\0", "config", "iceberg.vim")
-time([[Config for iceberg.vim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

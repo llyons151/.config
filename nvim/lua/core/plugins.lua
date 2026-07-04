@@ -17,12 +17,7 @@ return require("packer").startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
 
   -- Colors
-  use {
-    "cocopon/iceberg.vim",
-    config = function()
-      vim.cmd("colorscheme iceberg")
-    end
-  }
+  use "olivercederborg/poimandres.nvim"
 
   -- Telescope
   use {

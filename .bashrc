@@ -18,7 +18,7 @@ EXTRA_DIRS=(
   "$HOME/.config/kitty"
   "$HOME/.config/waybar"
   "$HOME/.config/wofi"
-  "$HOME/.config/tmux"
+  "$HOME/.config/herdr"
 
   "$HOME/Downloads"
 
@@ -49,38 +49,42 @@ _build_dir_choices() {
   done
 }
 
-tmux_windowizer() {
-    local session="saps"
-    local picks d name i wid last_wid=""
+herdr_windowizer() {
+    local picks d name i last
     _build_dir_choices
     picks="$(printf '%s\n' "${DIR_CHOICES[@]}" | fzf --prompt='Clocks only tick in one direction: ' --height=100% --multi)" || return
     [[ -n "$picks" ]] || return
-    if ! tmux has-session -t "$session" 2>/dev/null; then
-        read -r d <<<"$picks"
-        [[ -d "$d" ]] || return
-        name="$(basename "$d" | tr -c 'A-Za-z0-9_-' '_' )"
-        tmux new-session -ds "$session" -c "$d" -n "$name"
-        picks="$(printf '%s\n' "$picks" | sed '1d')"
-    fi
+
+    # Make sure the persistent herdr server is up (no-op if already running).
+    herdr status server >/dev/null 2>&1 || { herdr server >/dev/null 2>&1 & disown; sleep 0.3; }
+
+    # Collect the valid directory picks.
+    local -a dirs=()
     while IFS= read -r d; do
-        [[ -n "$d" && -d "$d" ]] || continue
-        name="$(basename "$d" | tr -c 'A-Za-z0-9_-' '_' )"
-        if tmux list-windows -t "$session" -F '#W' 2>/dev/null | grep -qx "$name"; then
-            i=1
-            while tmux list-windows -t "$session" -F '#W' | grep -qx "${name}-${i}"; do ((i++)); done
-            name="${name}-${i}"
-        fi
-        wid="$(tmux new-window -t "$session" -c "$d" -n "$name" -P -F '#{window_id}')"
-        last_wid="$wid"
+        [[ -n "$d" && -d "$d" ]] && dirs+=("$d")
     done <<<"$picks"
-    [[ -n "$last_wid" ]] && tmux select-window -t "$last_wid"
-    if [[ -n "${TMUX-}" ]]; then tmux switch-client -t "$session"; else tmux attach -t "$session"; fi
+    [[ ${#dirs[@]} -gt 0 ]] || return
+
+    # One tab per pick (switchable with Alt+1..9); focus the last one created.
+    last=$(( ${#dirs[@]} - 1 ))
+    for i in "${!dirs[@]}"; do
+        d="${dirs[$i]}"
+        name="$(basename "$d")"; name="${name//[^A-Za-z0-9_-]/_}"
+        if (( i == last )); then
+            herdr tab create --cwd "$d" --label "$name" --focus   >/dev/null 2>&1
+        else
+            herdr tab create --cwd "$d" --label "$name" --no-focus >/dev/null 2>&1
+        fi
+    done
+
+    # If we're running outside herdr, attach to the session now.
+    [[ -z "${HERDR_PANE_ID-}" ]] && herdr
 }
 
-tmux_kill_all() {
+herdr_kill_all() {
     echo "Oh no... He's *ghasps dramiticly* dead"
-    echo "Tmux has been slain"
-    tmux kill-server
+    echo "The herd has been scattered"
+    herdr server stop
 }
 
 cd_windowizer() {
@@ -98,10 +102,10 @@ cd_windowizer() {
     ls -gA
 }
 
-bind -x '"\C-g":tmux_windowizer'
+bind -x '"\C-g":herdr_windowizer'
 bind '"\C-f":"\C-ucd_windowizer\C-m"'
 bind -r '\C-t'
-bind -x '"\C-tk":tmux_kill_all'
+bind -x '"\C-tk":herdr_kill_all'
 
 update() {
     sudo pacman -Syu --noconfirm
